@@ -2,11 +2,11 @@ import users from './users' ;
 import authedUser from './authedUser';
 import loading from './loading';
 import questions from './questions';
-import {configureStore} from 'redux';
+import { combineReducers } from 'redux';
 
-export default configureStore({
-  users,
-  authedUser,
-  loading,
-  questions,
-});
+export default combineReducers({
+    users,
+    authedUser,
+    loading,
+    questions,
+  });
