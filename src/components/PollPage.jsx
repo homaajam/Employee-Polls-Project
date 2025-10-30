@@ -1,5 +1,5 @@
 import { handleAddAnswer } from "../actions/questions";
-import { Connect } from "react-redux";
+import { connect } from "react-redux";
 import { Navigate, useNavigate } from "react-router-dom";
 
 const PollPage =({dispatch, authedUser, author, question})=>{
