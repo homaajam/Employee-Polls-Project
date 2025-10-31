@@ -4,7 +4,7 @@ export const RECEIVE_QUESTIONS="RECEIVE_QUESTIONS";
 export const ADD_QUESSTION="ADD_QUESTION";
 export const ADD_ANSWER="ADD_ANSWER";
 
-export function receiveQuestion(questions){
+export function receiveQuestions(questions){
   return {
     type:RECEIVE_QUESTIONS,
     questions,
