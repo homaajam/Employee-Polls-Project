@@ -40,7 +40,7 @@ let users = {
     id: 'zoshikanlu',
     password:'pass246',
     name: 'Zenobia Oshikanlu',
-    avatarURL: null,
+    avatarURL: "https://www.gravatar.com/avatar/?d=mp&s=40",
     answers: {
       "xj352vofupe1dqz9emx13r": 'optionOne',
     },
