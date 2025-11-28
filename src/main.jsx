@@ -7,7 +7,7 @@ import reducer from './reducers';
 import { createStore } from 'redux';
 import {Provider} from'react-redux';
 import { HashRouter as Router } from "react-router-dom";
-import {configureStore} from '@reduxjs/toolkit';
+
 
 const store=createStore(reducer, middleware);
 
