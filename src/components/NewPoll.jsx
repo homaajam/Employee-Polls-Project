@@ -18,6 +18,8 @@ const NewPoll= ({dispatch})=>{
   const handleAddbutton=(e)=>{
     e.preventDefault();
     dispatch(handleAddQuestion(firstOpt,secondOpt));
+    setFirstOpt("");
+    setSecondOpt("");
     navigate("/");
   }
   
@@ -25,22 +27,24 @@ const NewPoll= ({dispatch})=>{
 
 
   return(
-    <div>
-      <h3 className="new-poll">NEW POLL</h3>
+    <div className="flex justify-center items-center min-h-screen bg-gray-900 px-4">
+     <div className="bg-gray-800 shadow-lx rounded-xl p-8 w-full max-w-lg border border-gray-700">
+      <h3 className="text-3xl font-bold text-center mb-6 text-gray-200">NEW POLL</h3>
 
-      <p id="1-opt">First option:</p>
-      <textarea className="textarea-opt-one"
+      <p id="1-opt" className="text-gray-200">First option:</p>
+      <textarea className="w-full mt-1 p-1 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none resize-none"
       placeholder="text"
       value={firstOpt}
       onChange={handleFirstOpt}></textarea>
 
-      <p id="2-opt">Second option:</p>
-      <textarea className="textarea-opt-two"
+      <p id="2-opt" className="text-gray-200">Second option:</p>
+      <textarea className="w-full mt-1 p-1 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none resize-none"
       placeholder="text"
       value={secondOpt}
       onChange={handleSecondOpt}></textarea>
 
-      <button className="add-button" onClick={handleAddbutton}>ADD</button>
+      <button className="w-full bg-blue-600 text-white py-3 rounded-lg text-lg font-semibold hover:bg-blue-700 transition" onClick={handleAddbutton}>ADD</button>
+      </div>
     </div>
 
   );

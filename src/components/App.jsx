@@ -1,15 +1,26 @@
 import LoadingBar from "./LoadingBar.jsx";
-import { Fragment } from "react";
+import LeaderBoard from "./LeaderBoard.jsx";
+import {useEffect, Fragment} from "react";
+import {Routes, Route} from "react-router-dom";
+import {handleInitialData} from "../actions/shared.js";
+import { connect } from "react-redux";
 
 function App(props){
+  useEffect(() => {
+    props.dispatch(handleInitialData());
+  }, []);
 
   return (
     <Fragment>
-      <LoadingBar/>
-
-      <h1>Welcome!</h1>
+      
+      <div className="container">
+        <Routes>
+          <Route path="/" exact element={<LeaderBoard />} />
+        </Routes>
+      </div>
+     
     </Fragment>
   );
 }
-export default App;
+export default connect()(App);
 
