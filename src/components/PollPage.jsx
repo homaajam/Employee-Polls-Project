@@ -24,12 +24,15 @@ const PollPage =({dispatch, authedUser, author, question})=>{
     navigate("/");
   };
   const percentage=(answer, question)=>{
-    allVotes=question.optionOne.votes.length + question.optionTwo.votes.length;
+    let allVotes=question.optionOne.votes.length + question.optionTwo.votes.length;
+     let votes=0;
     switch(answer){
-      case "optoinOne":
+      case "optionOne":
         votes=question.optionOne.votes.length;
+        break;
       case "optionTwo":
         votes=question.optionTwo.votes.length;
+        break;
       default:
         votes=0;
     }
@@ -40,41 +43,46 @@ const PollPage =({dispatch, authedUser, author, question})=>{
 
 
   return(
-    <div>
-      <div className="flex justify-center">
-        <h3>WOULD YOU RATHER?</h3>
-        <h1 className="text-3xl font-bold mt-9">Poll by {author.id}</h1>
-      </div>
-      <div className="flex justify-center">
-        <img src={author.avatarURL} alt="Profile" className="h-24 w-24"/>
-      </div>
-      <div>
-        <button onClick={handleOptionOne} disabled={hasVoted}
-             className={"p-2 rounded-xl bg-zinc-100 hover:shadow-xl transition " + (hasVotedForOptionOne ? "bg-lime-400" : "")}>
-          <div className={hasVotedForOptionOne ? "chosen" : ""}>
-            <p className="font-bold mb-2">{question.optionOne.text}</p>
+    
+    <div className="flex justify-center items-center min-h-screen bg-gray-900 px-4">
+      <div className="bg-gray-800 shadow-lx rounded-xl p-8 w-full max-w-lg border border-gray-700">
+        <div >
+          <h3 className="text-3xl font-bold text-center mb-6 text-gray-200">WOULD YOU RATHER?</h3>
+          <h1 className="text-3xl font-semibold text-gray-400">Poll by {author.id} </h1>
+        </div>
+        <div className="flex justify-center">
+         <img src={author.avatarURL} alt="Profile" class="h-24 w-24 rounded-full border border-gray-600" />
+        </div>
+        <div class="space-y-4">
+          <button onClick={handleOptionOne} disabled={hasVoted}
+              className={"p-3 w-full rounded-xl text-left bg-gray-700 text-gray-200 hover:bg-gray-600 transition" + (hasVotedForOptionOne ? "bg-gray-600" : "")}>
+            <div className={hasVotedForOptionOne ? "chosen" : ""}>
+              <p className="font-bold mb-1">{question.optionOne.text}</p>
+              {!hasVoted &&
+              <p className="underline underline-offset-4 mb-1">Click</p>
+              }
+              {hasVoted &&
+              <p className="text-xs text-gray-300">Votes:{question.optionOne.votes.length} ({percentage("optionOne", question)})</p>
+              }
+            </div>
+          </button>
+          <button onClick={handleOptionTwo} disabled={hasVoted}
+              className={"p-3 rounded-xl text-left bg-gray-700 text-gray-200 hover:bg-gray-600 transition " + (hasVotedForOptionTwo ? "bg-gray-600" : "")}>
+            <p className="font-bold mb-2">{question.optionTwo.text}</p>
             {!hasVoted &&
-            <p className="underline underline-offset-4 mb-3">Click</p>
+            <p className="underline underline-offset-4 mb-1">Click</p>
             }
             {hasVoted &&
-            <p className="text-xs">Votes:{question.optionOne.votes.length} ({percentage("optionOne", question)})</p>
+            <p className="text-xs text-gray-300">Votes: {question.optionTwo.votes.length} ({percentage("optionTwo", question)})</p>
             }
-          </div>
-        </button>
-        <button onClick={handleOptionTwo} disabled={hasVoted}
-             className={"p-2 rounded-xl bg-zinc-100 hover:shadow-xl transition " + (hasVotedForOptionTwo ? "bg-lime-400" : "")}>
-          <p className="font-bold mb-2">{question.optionTwo.text}</p>
-          {!hasVoted &&
-          <p className="underline underline-offset-4 mb-3">Click</p>
-          }
-          {hasVoted &&
-          <p className="text-xs">Votes: {question.optionTwo.votes.length} ({percentage("optionTwo", question)})</p>
-          }
-       </button>
+          </button>
 
+        </div>
       </div>
     </div>
   );
 
 }
+
+
 export default connect()(PollPage);
