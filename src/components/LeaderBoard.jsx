@@ -7,7 +7,7 @@ const Leaderboard=({users})=>{
     return (
         <div>
             <h1 className="text-3xl font-bold mt-9">Leaderboard</h1>
-            <h1 className="text-5xl font-bold text-red-500">Tailwind works!</h1>
+            
 
             
             <table className="border-collapse table-auto w-full text-sm mt-6 mx-auto">
