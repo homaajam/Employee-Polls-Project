@@ -10,8 +10,8 @@ const HomePage=({authedUser, questions, users})=>{
   const unanswered=(q)=>(!q.optionOne.votes.includes(authedUser.id) && !q.optionTwo.votes.includes(authedUser.id))
   return(
   <div>
-    <nav className="bg-gray-800 text-gray-200 px-8 py-6 flex justify-between items-center shadow-md">
-      <div className="flex space-x-6 text-lg">
+    <nav className="w-full bg-gray-800 text-gray-200 px-8 py-7 flex justify-center shadow-md">
+      <div className="flex space-x-10 text-lg">
         <Link className="hover:text-white transition" to="/">Home</Link>
         <Link className="hover:text-white transition" to="/add">NewPoll</Link>
         <Link className="hover:text-white transition"to="/LeaderBoard">Leader Board</Link>
@@ -19,10 +19,10 @@ const HomePage=({authedUser, questions, users})=>{
 
       </div>
     </nav>
-    <div className="flex justify-center items-center min-h-screen bg-gray-900 px-4">
-      <div className="bg-gray-800 shadow-lx rounded-xl p-8 w-full max-w-lg border border-gray-700">
+    <div className="flex justify-center items-center min-h-screen bg-gray-900 py-16 px-4">
+      <div className="bg-gray-800 shadow-lx rounded-2xl p-10 w-full max-w-5xl border border-gray-700">
 
-        <div className="flex justify-center space-x-10 mb-6 text-lg font-semibold">
+        <div className="flex justify-center space-x-16 mb-8 text-lg font-semibold">
           <span onClick={()=>setActiveTab("unanswered")} className={
                 "cursor-pointer pb-1 " +
                 (activeTab==="unanswered"
@@ -38,7 +38,7 @@ const HomePage=({authedUser, questions, users})=>{
         </div>
 
         {activeTab=== "unanswered" && (
-          <ul className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <ul className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {questions.filter(unanswered).map((question)=>(<li key={question.id}>
               <Card question={question} author={users[question.author]}/>
             </li>))}
@@ -47,7 +47,7 @@ const HomePage=({authedUser, questions, users})=>{
         
 
         {activeTab=== "answered" && (
-          <ul className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <ul className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {questions.filter(answered).map((question)=>(<li key={question.id}>
               <Card question={question} author={users[question.author]}/>
             </li>))}
