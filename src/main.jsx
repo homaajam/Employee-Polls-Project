@@ -2,14 +2,10 @@ import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import './index.css';
 import App from './components/App';
-import middleware from './middleware';
-import reducer from './reducers';
-import { createStore } from 'redux';
+import { store } from './store';
 import {Provider} from'react-redux';
 import { HashRouter as Router } from "react-router-dom";
 
-
-const store=createStore(reducer, middleware);
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
