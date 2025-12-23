@@ -1,3 +1,4 @@
+import React from "react";
 import {connect} from "react-redux";
 import {Navigate} from "react-router-dom";
 import {useState} from "react";
@@ -43,6 +44,7 @@ const Login= ({dispatch, loggedIn})=>{
             type="text"
             name="username"
             id="username"
+            data-testid="username"
             className="px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400  disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1 invalid:border-pink-500 invalid:text-pink-600 focus:invalid:border-pink-500 focus:invalid:ring-pink-500 disabled:shadow-none"/>
             <input
             value={password}
@@ -50,10 +52,12 @@ const Login= ({dispatch, loggedIn})=>{
             type="password"
             name="password"
             id="password"
+            data-testid="password"
             className="px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400  disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1 invalid:border-pink-500 invalid:text-pink-600 focus:invalid:border-pink-500 focus:invalid:ring-pink-500 disabled:shadow-none"/>
 
             <button
             type="submit"
+            data-testid="submit"
             className="bg-white px-5 py-2.5 text-sm leading-5 rounded-md font-semibold text-black">Login</button>
           </form>
         </div>

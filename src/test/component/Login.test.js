@@ -1,0 +1,50 @@
+import "@testing-library/jest-dom";
+
+import React from "react";
+import {store} from "../../store"
+import {fireEvent, render} from "@testing-library/react";
+import {Provider} from "react-redux";
+import {BrowserRouter} from "react-router-dom";
+import Login from "../../components/Login";
+
+
+describe('Login',()=>{
+  it('it will matches the snapshot when it renders', ()=>{
+    var component=render(
+      <Provider store={store}>
+        <BrowserRouter>
+          <Login/>
+        </BrowserRouter>
+      </Provider>
+    );
+    expect(component).toMatchSnapshot();
+  });
+
+  it('will allow user to type username and passwords and clear input elements after clicking button',()=>{
+
+    const component=render(
+      <Provider store={store}>
+        <BrowserRouter>
+          <Login/>
+        </BrowserRouter>
+      </Provider>
+    );
+
+    const usernameInputElement=component.getByTestId("username");
+    const passwordInputElement=component.getByTestId("password");
+    const submitButtonElement=component.getByTestId("submit");
+    expect(usernameInputElement).toBeInTheDocument();
+    expect(passwordInputElement).toBeInTheDocument();
+    expect(submitButtonElement).toBeInTheDocument();
+
+    fireEvent.change(usernameInputElement,{target:{value:'sarahedo'}});
+    fireEvent.change(passwordInputElement,{target:{value:'moowdc'}});
+    expect(usernameInputElement.value).toBe("sarahedo");
+    expect(passwordInputElement.value).toBe("moowdc");
+
+    fireEvent.click(submitButtonElement); 
+    expect(usernameInputElement.value).toBe("");
+    expect(passwordInputElement.value).toBe("");
+
+  });
+});
