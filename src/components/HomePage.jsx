@@ -10,15 +10,6 @@ const HomePage=({authedUser, questions, users})=>{
   const unanswered=(q)=>(!q.optionOne.votes.includes(authedUser.id) && !q.optionTwo.votes.includes(authedUser.id))
   return(
   <div>
-    <nav className="w-full bg-gray-800 text-gray-200 px-8 py-7 flex justify-center shadow-md">
-      <div className="flex space-x-10 text-lg">
-        <Link className="hover:text-white transition" to="/">Home</Link>
-        <Link className="hover:text-white transition" to="/add">NewPoll</Link>
-        <Link className="hover:text-white transition"to="/LeaderBoard">Leader Board</Link>
-        
-
-      </div>
-    </nav>
     <div className="flex justify-center items-center min-h-screen bg-gray-900 py-16 px-4">
       <div className="bg-gray-800 shadow-lx rounded-2xl p-10 w-full max-w-5xl border border-gray-700">
 
