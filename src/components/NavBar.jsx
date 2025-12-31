@@ -9,17 +9,19 @@ const NavBar=({authedUser,dispatch})=>{
   }
   return(
     <div>
-      <nav className="w-full bg-gray-800 text-gray-200 px-8 py-7 flex justify-center shadow-md">
-        <div className="flex space-x-10 text-lg">
+      <nav className="w-full bg-gray-800 text-gray-200 px-8 py-7 shadow-md rounded-2xl border border-gray-700">
+        <div className="max-w-6xl mx-auto flex items-center justify-between ">
           <span
-            className="font-medium px-3 py-2 text-slate-700">{authedUser.name}</span>
-          <Link className="hover:text-white transition" to="/">Home</Link>
-          <Link className="hover:text-white transition" to="/add">NewPoll</Link>
-          <Link className="hover:text-white transition"to="/LeaderBoard">Leader Board</Link>
-          <button 
-          onClick={logout}
-          className="hover:text-white transition">Logout</button>
-  
+            className="text-white font-medium">{authedUser?.name}</span>
+          <div className="flex items-center space-x-8 text-lg">
+            <Link className="hover:text-white transition" to="/">Home</Link>
+            <Link className="hover:text-white transition" to="/add">NewPoll</Link>
+            <Link className="hover:text-white transition"to="/LeaderBoard">Leader Board</Link>
+            <button 
+            onClick={logout}
+            className="hover:text-white transition">Logout</button>
+          </div>
+    
         </div>
       </nav>
     </div>
@@ -29,4 +31,4 @@ const mapStateToProps=({authedUser, users})=>({
   authedUser: users[authedUser],
 });
 
-export default connect()(NavBar);
+export default connect(mapStateToProps)(NavBar);
