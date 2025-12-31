@@ -5,7 +5,7 @@ import { useState } from "react";
 
 const HomePage=({authedUser, questions, users})=>{
   const [activeTab, setActiveTab]=useState("unanswered");
-
+  if (!authedUser) return null;
   const answered=(q)=>(q.optionOne.votes.includes(authedUser.id) || q.optionTwo.votes.includes(authedUser.id));
   const unanswered=(q)=>(!q.optionOne.votes.includes(authedUser.id) && !q.optionTwo.votes.includes(authedUser.id))
   return(
