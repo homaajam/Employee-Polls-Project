@@ -1,4 +1,3 @@
-import {connect} from "react-redux";
 
 const Error404 =()=>{
     return(
@@ -9,4 +8,4 @@ const Error404 =()=>{
     );
 };
 
-export default connect()(Error404);
+export default Error404;
