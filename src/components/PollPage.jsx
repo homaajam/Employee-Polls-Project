@@ -1,9 +1,20 @@
 import { handleAddAnswer } from "../actions/questions";
-import { connect } from "react-redux";
-import { Navigate, useNavigate } from "react-router-dom";
+import { connect, useSelector, useDispatch } from "react-redux";
+import { Navigate, useNavigate, useParams} from "react-router-dom";
 
-const PollPage =({dispatch, authedUser, author, question})=>{
-  const navigate = useNavigate();
+const PollPage =()=>{
+  const navigate=useNavigate();
+  const { id }=useParams();
+  const dispatch=useDispatch();
+
+  const authedUser=useSelector((state)=>state.authedUser);
+  const questions=useSelector((state)=>state.questions);
+  const users=useSelector((state)=>state.users);
+
+  const question=Object.values(questions).find((q)=> q.id === id);
+  const author=question? users[question.author]:null;
+
+
 
   if(!authedUser || !question || !author){
     return <Navigate to="/404"/>;
@@ -51,9 +62,9 @@ const PollPage =({dispatch, authedUser, author, question})=>{
           <h1 className="text-3xl font-semibold text-gray-400">Poll by {author.id} </h1>
         </div>
         <div className="flex justify-center">
-         <img src={author.avatarURL} alt="Profile" class="h-24 w-24 rounded-full border border-gray-600" />
+         <img src={author.avatarURL} alt="Profile" className="h-24 w-24 rounded-full border border-gray-600" />
         </div>
-        <div class="space-y-4">
+        <div className="space-y-4">
           <button onClick={handleOptionOne} disabled={hasVoted}
               className={"p-3 w-full rounded-xl text-left bg-gray-700 text-gray-200 hover:bg-gray-600 transition" + (hasVotedForOptionOne ? "bg-gray-600" : "")}>
             <div className={hasVotedForOptionOne ? "chosen" : ""}>
@@ -83,6 +94,15 @@ const PollPage =({dispatch, authedUser, author, question})=>{
   );
 
 }
+/*const mapStateToProps=({authedUser, users, questions})=>{
+    try{
+        const question=Object.values(questions).find((question) => question.id===useParams().id);
+        const author =Object.values(users).find((user) => user.id===question.author);
+        return {authedUser, question, author};
+    } catch (e){
+        return <Navigate to="/404"/>;
+    }
+};*/
 
 
 export default connect()(PollPage);
