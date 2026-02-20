@@ -11,9 +11,10 @@ const NavBar=({authedUser,dispatch})=>{
     <div>
       <nav className="w-full bg-gray-800 text-gray-200 px-8 py-7 shadow-md rounded-2xl border border-gray-700">
         <div className="max-w-6xl mx-auto flex items-center justify-between ">
-          <span
-            className="text-white font-medium">{authedUser?.name}</span>
+          
           <div className="flex items-center space-x-8 text-lg">
+            <span
+            className="text-white font-medium">{authedUser?.name}</span>
             <Link className="hover:text-white transition" to="/">Home</Link>
             <Link className="hover:text-white transition" to="/add">NewPoll</Link>
             <Link className="hover:text-white transition"to="/LeaderBoard">Leader Board</Link>

@@ -10,7 +10,7 @@ const Card=({author,question})=>{
             <p className="font-semibold">{question.author}</p>
             <p className="text-sm text-gray-400">{new Date(question.timestamp).toDateString()}</p>
           </div>
-          <Link to={'questions/:' + question.id} className="underline underline-offset-4">Details</Link>
+          <Link to={`/questions/${question.id}`} className="underline underline-offset-4">Details</Link>
       </div>
 
     </div>
