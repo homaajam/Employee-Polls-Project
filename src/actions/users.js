@@ -8,7 +8,7 @@
     users,
   };
  }
-export function addAnswerUser(qid,answer,authedUser){
+export function addAnswerUser({qid,answer,authedUser}){
   return {
     type:ADD_ANSWER_USER,
     qid,

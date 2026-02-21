@@ -1,7 +1,8 @@
 import { saveQuestion, saveAnswer } from "../utils/api";
 import { hideLoading,showLoading } from "./loading";
+import { addAnswerUser, addQuestionUser } from "./users";
 export const RECEIVE_QUESTIONS="RECEIVE_QUESTIONS";
-export const ADD_QUESSTION="ADD_QUESTION";
+export const ADD_QUESTION="ADD_QUESTION";
 export const ADD_ANSWER="ADD_ANSWER";
 
 export function receiveQuestions(questions){
@@ -13,7 +14,7 @@ export function receiveQuestions(questions){
 
 export function addQuestion(question){
   return {
-    type:ADD_QUESSTION,
+    type:ADD_QUESTION,
     question,
   };
 }
@@ -26,6 +27,7 @@ export function handleAddQuestion(optionOneText, optionTwoText){
 
     return saveQuestion({optionOneText, optionTwoText,author:authedUser}).then((question)=>{
       dispatch(addQuestion(question));
+      dispatch(addQuestionUser({author: authedUser,id: question.id}))
     }).then(()=> dispatch(hideLoading()));
   };
 }
@@ -44,9 +46,10 @@ export function handleAddAnswer(questionId,answer){
     const {authedUser}= getState();
     dispatch(showLoading());
 
-    return saveAnswer({authedUser,questionId,answer}).then(()=>{
-      dispatch(addAnswer(answer))
-    });
+    return saveAnswer({authedUser,qid: questionId,answer}).then(()=>{
+      dispatch(addAnswer({authedUser,qid: questionId,answer}))
+      dispatch(addAnswerUser({qid: questionId, answer, authedUser}))
+    }).then(()=> dispatch(hideLoading()));
 
   }
 }
